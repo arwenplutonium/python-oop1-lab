@@ -1,19 +1,25 @@
+#!/usr/bin/env python3
+
+
 class Book:
     def __init__(self, title, page_count):
+        # title and page_count are both required from the user
         self.title = title
-        self.set_page_count(page_count)
+        self.page_count = page_count
 
-    def get_page_count(self):
+    @property
+    def page_count(self):
+        # getter returns the stored page count
         return self._page_count
 
-    def set_page_count(self, value):
-        if not isinstance(value, int):
-            print("page_count must be an integer")
-            self._page_count = None
-        else:
+    @page_count.setter
+    def page_count(self, value):
+        # page_count must be a whole number
+        if isinstance(value, int):
             self._page_count = value
-
-    page_count = property(get_page_count, set_page_count)
+        else:
+            print("page_count must be an integer")
 
     def turn_page(self):
+        # simulate the reader flipping to the next page
         print("Flipping the page...wow, you read fast!")
